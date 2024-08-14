@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import google from "../assets/google.svg";
 import logo from "../assets/logoName.svg";
 
@@ -6,15 +5,6 @@ const Login = () => {
   const handleLogin = async () => {
     window.location.href = `https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=${window.location.origin}`;
   };
-
-  useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const fetchedToken = queryParams.get("token");
-
-    if (fetchedToken) {
-      localStorage.setItem("token", fetchedToken);
-    }
-  }, []);
 
   return (
     <div className="h-screen">

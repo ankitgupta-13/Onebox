@@ -4,13 +4,5 @@ import { defineConfig } from "vite";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  server: {
-    proxy: {
-      "/proxy": {
-        target: "https://hiring.reachinbox.xyz/api/v1/onebox",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/proxy/, ""),
-      },
-    },
-  },
+  server: {},
 });

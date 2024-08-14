@@ -1,4 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { useLocation, useNavigate } from "react-router-dom";
+import { getAllMails } from "../api/email.api";
 import chart from "../assets/barChart.svg";
 import mail from "../assets/email.svg";
 import home from "../assets/home.svg";
@@ -11,6 +13,7 @@ import userIcon from "../assets/userIcon.svg";
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const sections = [
     {
       id: 1,
@@ -48,8 +51,15 @@ const Sidebar = () => {
       title: "chart",
     },
   ];
+  let activeSection = String(location.pathname.split("/").pop()) || "home";
+  console.log(activeSection);
+  const { data: allMails } = useQuery({
+    queryKey: ["allMails"],
+    queryFn: getAllMails,
+    staleTime: Infinity,
+  });
   return (
-    <div className="px-5 py-4 flex flex-col justify-between h-full">
+    <div className="px-5 py-4 flex flex-col justify-between h-full items-center">
       <div>
         <img src={logo} alt="not found" className="h-10 cursor-pointer" />
       </div>

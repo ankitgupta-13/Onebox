@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllMails } from "../api/email.api";
+import dropdown from "../assets/dropdown.svg";
 import noMessage from "../assets/noMessage.svg";
 import { Mail } from "../types/mail.type";
 
 const Onebox = () => {
   const { data: allMails, isLoading } = useQuery({
-    queryKey: ["allCategories"],
+    queryKey: ["allMails"],
     queryFn: getAllMails,
     staleTime: Infinity,
   });
@@ -16,8 +17,24 @@ const Onebox = () => {
         <div>Loading...</div>
       ) : (
         <div>
-          <p>All Inbox</p>
-          {!allMails.data ? (
+          <div className="flex gap-2">
+            <p>All Inbox(s)</p>
+            <img src={dropdown} alt="not found" />
+          </div>
+          <div className="flex">
+            <div>
+              <span>{allMails.data.length}</span>
+              <span>New Replies</span>
+            </div>
+            <div className="flex">
+              <span>Newest</span>
+              <img src={dropdown} alt="not found" />
+            </div>
+          </div>
+          <div>
+            <input type="text" />
+          </div>
+          {allMails.data ? (
             allMails.data.map((mail: Mail) => (
               <div key={mail.id}>
                 <div>{mail.id}</div>

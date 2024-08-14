@@ -21,7 +21,7 @@ const Layout = () => {
     }
   }, []);
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-1 h-screen">
       <div>
         <Sidebar />
       </div>

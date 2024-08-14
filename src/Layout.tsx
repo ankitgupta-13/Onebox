@@ -7,7 +7,6 @@ const Layout = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.getItem("token")) {
-      console.log(localStorage.getItem("token"));
       return;
     }
   }, []);
@@ -21,7 +20,7 @@ const Layout = () => {
     }
   }, []);
   return (
-    <div className="flex gap-1 h-screen">
+    <div className="flex gap-1 h-screen w-screen border-2">
       <div>
         <Sidebar />
       </div>

@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/proxy": {
-        target: "https://hiring.reachinbox.xyz/api/v1",
+        target: "https://hiring.reachinbox.xyz/api/v1/onebox",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/proxy/, ""),
       },

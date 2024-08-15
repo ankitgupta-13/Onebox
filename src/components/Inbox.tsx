@@ -24,7 +24,7 @@ const Inbox = () => {
   const { mutate } = useMutation({
     mutationFn: getEmailThreads,
     onSuccess: (data) => {
-      dispatch(setMailThreads(data.data));
+      dispatch(setMailThreads(data?.data));
     },
     onMutate: () => dispatch(setIsLoadingThreads(true)),
     onSettled: () => dispatch(setIsLoadingThreads(false)),
@@ -51,7 +51,7 @@ const Inbox = () => {
                 </div>
                 <div className="flex gap-1 items-center">
                   <span className="font-bold text-[var(--text-color)] ">
-                    {allMails.data.length}/{allMails.data.length}
+                    {allMails?.data.length}/{allMails?.data.length}
                   </span>
                   <p className="text-sm text-gray-500">Inboxes selected</p>
                 </div>

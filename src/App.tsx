@@ -7,7 +7,6 @@ import {
 import "./App.css";
 import Onebox from "./components/Onebox";
 import Layout from "./Layout";
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 
 function App() {
@@ -16,7 +15,6 @@ function App() {
       <>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Layout />}>
-          <Route element={<Home />} />
           <Route path="/onebox" element={<Onebox />} />
         </Route>
       </>

@@ -15,19 +15,21 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="h-screen">
+    <div className="h-screen bg-[var(--sidebar-background-color)]">
       <div className="flex justify-center p-6">
         <img src={logo} alt="not found" className="h-10" />
       </div>
       <div className="flex justify-center items-center h-5/6">
-        <div className="bg-gray-700 flex flex-col items-center gap-4 px-10 py-6">
+        <div className="bg-[var(--header-background-color)] flex flex-col items-center gap-6 px-16 py-8 rounded-md">
           <div className="">Create new account</div>
-          <div className="flex gap-3 cursor-pointer border-2 py-2 px-6 rounded-md">
+          <div className="flex gap-3 cursor-pointer border-2 border-gray-500 py-2 px-6 rounded-md">
             <img src={google} alt="not found" />
             <span onClick={handleLogin}>Sign Up with Google</span>
           </div>
-          <button>Create an Account</button>
-          <div className="flex gap-2">
+          <button className="bg-blue-500 px-4 py-2 rounded-md font-bold text-sm">
+            Create an Account
+          </button>
+          <div className="flex gap-2 text-[var(--secondary-text-color)]">
             <p>Already have an account?</p>
             <span>Sign in</span>
           </div>

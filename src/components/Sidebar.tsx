@@ -57,7 +57,6 @@ const Sidebar = () => {
     queryFn: getAllMails,
     staleTime: Infinity,
   });
-  console.log(allMails);
   return (
     <div className="px-5 py-4 flex flex-col justify-between h-full items-center">
       <div>
@@ -73,13 +72,20 @@ const Sidebar = () => {
             key={section.id}
             className={`${
               activeSection === section.title.toLowerCase() ? "bg-gray-700" : ""
-            } p-2 rounded-md text-gray-500`}
+            } p-2 rounded-md text-gray-500 relative flex justify-between`}
             onClick={() => navigate(section.title.toLowerCase())}
           >
+            {section.title === "Onebox" && (
+              <div className="absolute top-0 right-0 rounded-full w-4 h-4 bg-red-700 font-semibold text-white text-xs p-2 flex justify-center items-center z-1">
+                {allMails.data.length}+
+              </div>
+            )}
             <img
               src={section.img}
               alt="not found"
-              className="fill-current aspect-auto w-9 cursor-pointer "
+              className={`aspect-auto cursor-pointer ${
+                section.img === activeSection ? "invert-0" : "invert-[.25]"
+              }`}
             />
           </div>
         ))}

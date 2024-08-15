@@ -13,7 +13,7 @@ const Onebox = () => {
     staleTime: Infinity,
   });
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: KeyboardEvent) => {
     if (threads.length === 0) return;
     if (e.key == "d") {
       console.log("d");
@@ -22,16 +22,14 @@ const Onebox = () => {
   };
 
   useEffect(() => {
-    // Add event listener for keydown
     window.addEventListener("keydown", handleKeyDown);
-
-    // Clean up the event listener on component unmount
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
   return (
-    <div className="flex border-2">
+    <div className="flex gap-4">
       <Inbox />
       <Threads />
     </div>

@@ -3,9 +3,11 @@ import { useDispatch } from "react-redux";
 import { getAllMails, getEmailThreads } from "../api/email.api";
 import dropdown from "../assets/dropdown.svg";
 import noMessage from "../assets/noMessage.svg";
+import refresh from "../assets/refresh.svg";
 import { setIsLoadingThreads, setMailThreads } from "../redux/mail.slice";
 import { Mail } from "../types/mail.type";
 import Mailcard from "./Mailcard";
+
 const Inbox = () => {
   const dispatch = useDispatch();
 
@@ -30,9 +32,14 @@ const Inbox = () => {
         <div>Loading...</div>
       ) : (
         <div className="border-2">
-          <div className="flex gap-2">
-            <p>All Inbox(s)</p>
-            <img src={dropdown} alt="not found" />
+          <div className="flex justify-between px-2 items-center">
+            <div className="flex gap-2">
+              <p>All Inbox(s)</p>
+              <img src={dropdown} alt="not found" />
+            </div>
+            <div>
+              <img src={refresh} alt="" />
+            </div>
           </div>
           <div className="flex justify-center">
             <input

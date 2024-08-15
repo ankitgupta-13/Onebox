@@ -16,25 +16,33 @@ const Header = () => {
   return (
     <div className="flex justify-between px-6 h-16 items-center">
       <div>
-        <p>{activeSection}</p>
+        <p className="text-2xl font-bold text-[var(--text-color)]">
+          {activeSection}
+        </p>
       </div>
       <div className="flex gap-5">
         <div
           className={`flex ${
             theme === "dark" ? "bg-gray-500" : "bg-white flex-row-reverse"
-          } items-center justify-center gap-2 rounded-xl border-2 w-14 h-6 p-1 cursor-pointer`}
+          } items-center justify-center gap-2 rounded-xl border-2 border-[var(--header-border-color)] w-14 h-6 p-1 cursor-pointer`}
           onClick={() => dispatch(toggleTheme())}
         >
           <div
-            className={`w-3 h-3 rounded-full border-2 ${
-              theme === "dark" ? "bg-gray-800" : "bg-white"
-            }`}
+            className={`w-3 h-3 rounded-full ${
+              theme === "dark" ? "bg-[#888686]" : "bg-[#E9EAEC]"
+            } `}
           ></div>
           <img src={theme === "dark" ? sun : moon} alt="Theme Icon" />
         </div>
         <div className="flex gap-2">
-          <p>Tim's workspace</p>
-          <img src={dropdown} alt="Dropdown Icon" />
+          <p className="text-base font-semibold text-[var(--text-color)]">
+            Tim's workspace
+          </p>
+          <img
+            src={dropdown}
+            alt="Dropdown Icon"
+            className={`w-6 h-6 invert-[.25]`}
+          />
         </div>
       </div>
     </div>

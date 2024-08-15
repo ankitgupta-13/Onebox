@@ -80,13 +80,15 @@ const Sidebar = () => {
                 {allMails?.data.length}+
               </div>
             )}
-            <img
-              src={section.img}
-              alt="not found"
-              className={`w-10 aspect-auto cursor-pointer ${
-                section.img === activeSection ? "invert-0" : "invert-[.25]"
-              }`}
-            />
+            <div className="w-8">
+              <img
+                src={section.img}
+                alt="not found"
+                className={`w-8 aspect-auto cursor-pointer ${
+                  section.img === activeSection ? "invert-0" : "invert-[.25]"
+                }`}
+              />
+            </div>
           </div>
         ))}
       </div>

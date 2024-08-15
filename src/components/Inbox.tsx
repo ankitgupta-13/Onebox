@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMails, getEmailThreads } from "../api/email.api";
 import dropdown from "../assets/dropdown.svg";
+import idea from "../assets/idea.svg";
 import noMessage from "../assets/noMessage.svg";
 import refresh from "../assets/refresh.svg";
 import searchBar from "../assets/searchBar.svg";
@@ -37,6 +38,25 @@ const Inbox = () => {
       ) : (
         <div className="p-4 flex flex-col gap-6">
           <div className="flex flex-col gap-4">
+            <div className="flex gap-4 items-center bg-[var(--header-background-color)] rounded-md p-2">
+              <div>
+                <img src={idea} alt="" className="w-10" />
+              </div>
+              <div className="flex flex-col gap-2 text-[var(--text-color)] text-xs">
+                <div>
+                  <strong>Press </strong>
+                  <strong className="border-2 border-[var(--header-border-color)] rounded-md px-1">
+                    R to Reply{" "}
+                  </strong>
+                </div>
+                <div>
+                  <strong className="border-2 border-[var(--header-border-color)] rounded-md px-1">
+                    D to Delete{" "}
+                  </strong>
+                  <strong>an Email</strong>
+                </div>
+              </div>
+            </div>
             <div className="flex justify-between px-1">
               <div className="">
                 <div className="flex gap-2">

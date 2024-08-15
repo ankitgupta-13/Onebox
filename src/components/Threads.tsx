@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteEmailThreads } from "../api/email.api";
 import dropdown from "../assets/dropdown.svg";
+import noMessage from "../assets/noMessage.svg";
 import { setMailThreads } from "../redux/mail.slice";
 import { RootState } from "../redux/store";
 import { Thread } from "../types/thread.type";
@@ -73,11 +74,20 @@ const Threads = () => {
             </div>
             <div className="w-11/12 flex flex-col gap-4">
               <div className="flex flex-col gap-2">
-                {emailThreads?.map((thread: Thread, index: number) => (
-                  <div key={index}>
-                    <ThreadCard thread={thread} />
+                {!threadId ? (
+                  <div className="flex h-96 flex-col justify-center items-center">
+                    <img src={noMessage} alt="" />
+                    <span>Select an item to read</span>
                   </div>
-                ))}
+                ) : emailThreads.length === 0 ? (
+                  <div>No Threads Found!</div>
+                ) : (
+                  emailThreads.map((thread: Thread, index: number) => (
+                    <div key={index}>
+                      <ThreadCard thread={thread} />
+                    </div>
+                  ))
+                )}
               </div>
               {threadId && (
                 <div className="flex">

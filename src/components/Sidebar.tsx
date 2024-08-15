@@ -76,14 +76,14 @@ const Sidebar = () => {
             onClick={() => navigate(section.title.toLowerCase())}
           >
             {section.title === "Onebox" && (
-              <div className="absolute top-0 right-0 rounded-full w-4 h-4 bg-red-700 font-semibold text-white text-xs p-2 flex justify-center items-center z-1">
-                {allMails.data.length}+
+              <div className="absolute top-0 right-0 rounded-full w-4 h-4 bg-red-700 font-semibold text-white text-xs p-2 flex justify-center items-center">
+                {allMails?.data.length}+
               </div>
             )}
             <img
               src={section.img}
               alt="not found"
-              className={`aspect-auto cursor-pointer ${
+              className={`w-10 aspect-auto cursor-pointer ${
                 section.img === activeSection ? "invert-0" : "invert-[.25]"
               }`}
             />

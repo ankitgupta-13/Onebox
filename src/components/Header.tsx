@@ -23,13 +23,13 @@ const Header = () => {
       <div className="flex gap-5">
         <div
           className={`flex ${
-            theme === "dark" ? "bg-gray-500" : "bg-white flex-row-reverse"
+            theme === "dark" ? "bg-[#222426]" : "bg-[#f0f0f0] flex-row-reverse"
           } items-center justify-center gap-2 rounded-xl border-2 border-[var(--header-border-color)] w-14 h-6 p-1 cursor-pointer`}
           onClick={() => dispatch(toggleTheme())}
         >
           <div
             className={`w-3 h-3 rounded-full ${
-              theme === "dark" ? "bg-[#888686]" : "bg-[#E9EAEC]"
+              theme === "dark" ? "bg-[#888686]" : "bg-[#ffffff]"
             } `}
           ></div>
           <img src={theme === "dark" ? sun : moon} alt="Theme Icon" />

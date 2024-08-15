@@ -8,25 +8,28 @@
   font-family: "Open Sans", sans-serif;
 }
 
-/* styles.css */
 :root {
   --background-color: #fafafa;
   --sidebar-background-color: #fafafa;
   --sidebar-border-color: #d8d8d8;
   --header-background-color: #ffffff;
   --header-border-color: #dedede;
+  --button-background-color: #f0f0f0;
+  --card-background-color: #f9f9f9;
   --text-color: #454f5b;
+  --secondary-text-color: #637381;
   --primary-color: #1e90ff;
-  --secondary-color: #ff6347;
 }
 
 [data-theme="dark"] {
   --background-color: #000000;
-  --sidebar-background-color: #1f1f1f;
+  --sidebar-background-color: #101113;
   --sidebar-border-color: #343a40;
   --header-background-color: #1f1f1f;
   --header-border-color: #343a40;
+  --button-background-color: #222426;
+  --card-background-color: #141517;
   --text-color: #ffffff;
+  --secondary-text-color: #7f7f7f;
   --primary-color: #6495ed;
-  --secondary-color: #ff4500;
 }

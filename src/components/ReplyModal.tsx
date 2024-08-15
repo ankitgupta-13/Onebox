@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react";
+import dropdown from "../assets/dropdown.svg";
+import link from "../assets/link.svg";
 import reply from "../assets/reply.svg";
 
-function Modal() {
-  const [isModalOpen, setIsModalOpen] = useState(true);
-  //   const [isModalOpen, setIsModalOpen] = useState(false);
+function ReplyModal() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
-  // Close modal when clicking outside of it
   const handleOutsideClick = (event: any) => {
     if (event.target.className.includes("modal")) {
       setIsModalOpen(false);
     }
   };
 
+  const handleLinkClick = () => {
+    document.getElementById("fileInput")?.click();
+  };
+
   useEffect(() => {
-    const handleKeyDown = (event: any) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "r" || event.key === "R") {
-        toggleModal();
+        setIsModalOpen(true);
       } else if (event.key === "Escape") {
         setIsModalOpen(false);
       }
@@ -25,7 +29,6 @@ function Modal() {
 
     window.addEventListener("keydown", handleKeyDown);
 
-    // Clean up the event listener on component unmount
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
@@ -48,39 +51,58 @@ function Modal() {
         >
           <div className="modal-content bg-[var(--sidebar-background-color)] border-2 border-[var(--sidebar-border-color)] p-6 pt-0 rounded-lg shadow-lg">
             <div
-              className="flex justify-between close bg-[var(--header-background-color)] p-2 w-full"
+              className="flex justify-between items-center close bg-[var(--header-background-color)] p-2 w-full rounded-t-lg"
               onClick={toggleModal}
             >
-              <span className="text-sm">Reply</span>
-              <span className="cursor-pointer">&times;</span>
+              <span className="text-xl text-[var(--text-color)] font-bold">
+                Reply
+              </span>
+              <span className="cursor-pointer text-[var(--text-color)] font-bold text-2xl">
+                &times;
+              </span>
             </div>
-            <div className="text-[var(--header-background-color)]">
-              <div className="flex">
-                <div className="text-[var(--secondary-text-color)]">To : </div>
-                <input type="text" className="bg-transparent" />
+            <div className="text-[var(--header-background-color)] p-4">
+              <div className="flex mb-2">
+                <span className="text-[var(--secondary-text-color)] mr-2">
+                  To:
+                </span>
+                <input type="text" className="bg-transparent w-full" />
               </div>
-              <div className="flex">
-                <div className="text-[var(--secondary-text-color)]">From :</div>
-                <input className="bg-transparent" type="text" />
-              </div>
-              <div className="flex">
-                <div className="text-[var(--secondary-text-color)]">
-                  Subject :
+              <div className="flex mb-2">
+                <div className="text-[var(--secondary-text-color)] mr-2">
+                  From:
                 </div>
-                <input className="bg-transparent" type="text" />
+                <input className="bg-transparent w-full" type="text" />
+              </div>
+              <div className="border-1 border-[var(--header-border-color)] w-full h-1"></div>
+              <div className="flex mb-2">
+                <div className="text-[var(--secondary-text-color)] mr-2">
+                  Subject:
+                </div>
+                <input className="bg-transparent w-full" type="text" />
               </div>
               <div>
                 <textarea
                   name=""
                   id=""
-                  className="bg-transparent"
+                  className="bg-transparent focus:outline-none h-64 w-full text-[var(--text-color)]"
                   placeholder="Start writing..."
                 ></textarea>
               </div>
-              <div>
-                <button className="bg-gradient-to-r from-[#4B63DD] to-[#0524BF]">
+              <div className="flex items-center gap-2 mt-4">
+                <button className="bg-gradient-to-r from-[#4B63DD] to-[#0524BF] px-2 py-1 rounded-md text-white flex items-center gap-2">
                   Send
+                  <img src={dropdown} alt="" />
                 </button>
+                <div>
+                  <input type="file" id="fileInput" className="hidden" />
+                  <img
+                    src={link}
+                    alt="Attach file"
+                    className="cursor-pointer"
+                    onClick={handleLinkClick}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -90,4 +112,4 @@ function Modal() {
   );
 }
 
-export default Modal;
+export default ReplyModal;

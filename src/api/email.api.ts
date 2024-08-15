@@ -20,10 +20,10 @@ export const getAllMails = async () => {
   }
 };
 
-export const getEmailThreads = async (threadId: string) => {
+export const getEmailThreads = async (threadId: number) => {
   if (!threadId) return;
   try {
-    const response = await api.get(`/messages/${Number(threadId)}`);
+    const response = await api.get(`/messages/${threadId}`);
     if (response.status === 200) {
       return response.data;
     }
@@ -32,12 +32,12 @@ export const getEmailThreads = async (threadId: string) => {
   }
 };
 
-export const deleteEmailThreads = async (threadId: string) => {
+export const deleteEmailThreads = async (threadId: number) => {
+  console.log(threadId);
   try {
-    const response = await api.delete(`/messages/${Number(threadId)}`);
-    console.log(response);
-    if (response.status === 200) {
-      return response.data;
+    const { data } = await api.delete(`/messages/${threadId}`);
+    if (data.status === 200) {
+      return data.data;
     }
   } catch (error) {
     console.error(error);

@@ -1,24 +1,62 @@
-import { useSelector } from "react-redux";
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteEmailThreads } from "../api/email.api";
 import dropdown from "../assets/dropdown.svg";
+import { setMailThreads } from "../redux/mail.slice";
 import { RootState } from "../redux/store";
 import { Thread } from "../types/thread.type";
+import Loader from "./Loader";
 import ReplyModal from "./ReplyModal";
 import ThreadCard from "./ThreadCard";
 
 const Threads = () => {
-  const emailThreads = useSelector(
+  const queryClient = useQueryClient();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const dispatch = useDispatch();
+  const emailThreads: Thread[] = useSelector(
     (state: RootState) => state.mail.mailThreads
   );
-  console.log(emailThreads);
+  const threadId: number = emailThreads[0]?.threadId;
+
   const isLoadingThreads = useSelector(
     (state: RootState) => state.mail.isLoadingThreads
   );
+
+  const toggleModal = () => {
+    if (!threadId) setIsModalOpen(false);
+    else setIsModalOpen(!isModalOpen);
+  };
+
+  const handleDelete = async () => {
+    await deleteEmailThreads(threadId);
+    queryClient.invalidateQueries({ queryKey: ["allMails"] });
+    dispatch(setMailThreads([]));
+    toggleModal();
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "d" || event.key === "D") {
+        toggleModal();
+      } else if (event.key === "Escape") {
+        setIsModalOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [threadId, isModalOpen]);
 
   return (
     <div>
       <div>
         {isLoadingThreads ? (
-          <div>Loading...</div>
+          <Loader />
         ) : (
           <div className="flex flex-col items-center">
             <div className="flex justify-between p-4 w-full">
@@ -41,13 +79,39 @@ const Threads = () => {
                   </div>
                 ))}
               </div>
-              <div className="flex">
-                <ReplyModal />
-              </div>
+              {threadId && (
+                <div className="flex">
+                  <ReplyModal />
+                </div>
+              )}
             </div>
           </div>
         )}
       </div>
+      {threadId && isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+          <div className="w-full max-w-md bg-[var(--sidebar-background-color)] border-2 border-[var(--sidebar-border-color)] p-6 pt-2 rounded-lg shadow-lg flex flex-col gap-4 items-center">
+            <strong className="text-[var(--text-color)]">Are you sure?</strong>
+            <span className="text-sm text-[var(--secondary-text-color)]">
+              Your selected email will be deleted.
+            </span>
+            <div className="flex justify-between w-full">
+              <button
+                onClick={toggleModal}
+                className="bg-red-800 text-white px-4 py-2 rounded-md"
+              >
+                Cancel
+              </button>
+              <button
+                className="px-4 py-2 rounded-md bg-[var(--header-background-color)]"
+                onClick={handleDelete}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

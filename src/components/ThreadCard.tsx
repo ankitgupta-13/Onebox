@@ -16,7 +16,7 @@ const ThreadCard = ({ thread }: { thread: Thread }) => {
   };
 
   return (
-    <div className="bg-[var(--card-background-color)] border-2 border-[var(--header-border-color)] rounded-md p-5">
+    <div className="flex justify-between bg-[var(--card-background-color)] border-2 border-[var(--header-border-color)] rounded-md p-5">
       <div
         className="flex flex-col gap-2
        text-[var(--text-color)]"

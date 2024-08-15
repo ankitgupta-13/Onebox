@@ -8,6 +8,7 @@ import searchBar from "../assets/searchBar.svg";
 import { setIsLoadingThreads, setMailThreads } from "../redux/mail.slice";
 import { RootState } from "../redux/store";
 import { Mail } from "../types/mail.type";
+import Loader from "./Loader";
 import Mailcard from "./Mailcard";
 
 const Inbox = () => {
@@ -32,7 +33,7 @@ const Inbox = () => {
   return (
     <div>
       {isLoading ? (
-        <div>Loading...</div>
+        <Loader />
       ) : (
         <div className="p-4 flex flex-col gap-6">
           <div className="flex flex-col gap-4">
@@ -73,7 +74,7 @@ const Inbox = () => {
               />
               <input
                 type="text"
-                className="px-2 py-1 rounded-lg w-full bg-transparent focus:outline-none"
+                className="px-2 py-1 rounded-lg w-full bg-transparent focus:outline-none text-[var(--text-color)]"
                 placeholder="Search"
               />
             </div>
@@ -97,7 +98,10 @@ const Inbox = () => {
           <div>
             {allMails?.data ? (
               allMails.data.map((mail: Mail) => (
-                <div onClick={() => mutate(mail.threadId)} key={mail.id}>
+                <div
+                  onClick={() => mutate(Number(mail.threadId))}
+                  key={mail.id}
+                >
                   <Mailcard mail={mail} />
                 </div>
               ))

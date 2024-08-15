@@ -11,7 +11,9 @@ const Header = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   let activeSection = String(location.pathname.split("/").pop());
-  activeSection = activeSection[0].toUpperCase() + activeSection.substring(1);
+  activeSection =
+    activeSection &&
+    activeSection[0].toUpperCase() + activeSection.substring(1);
 
   return (
     <div className="flex justify-between px-6 h-16 items-center">

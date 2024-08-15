@@ -1,5 +1,10 @@
+import noMessage from "../assets/noMessage.svg";
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <img src={noMessage} alt="" />
+    </div>
+  );
 };
 
 export default Home;

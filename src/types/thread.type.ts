@@ -7,7 +7,7 @@ export interface Thread {
   messageId: string;
   sentAt: string;
   subject: string;
-  threadId: string;
+  threadId: number;
   toEmail: string;
   title: string;
   body: string;

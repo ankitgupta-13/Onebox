@@ -19,7 +19,7 @@ const Layout = () => {
       queryParams.get("token") || localStorage.getItem("token");
     if (fetchedToken) {
       localStorage.setItem("token", fetchedToken);
-      navigate("/home");
+      navigate("/onebox");
     } else {
       navigate("/login");
     }

@@ -73,7 +73,7 @@ const Threads = () => {
               </div>
             </div>
             <div className="w-11/12 flex flex-col gap-4">
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 mt-4">
                 {!threadId ? (
                   <div className="flex gap-3 h-96 flex-col justify-center items-center">
                     <img src={noMessage} alt="" />

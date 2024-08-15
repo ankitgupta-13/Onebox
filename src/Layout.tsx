@@ -6,15 +6,12 @@ import Sidebar from "./components/Sidebar";
 const Layout = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      return;
-    }
-  }, []);
-  useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
-    const fetchedToken = queryParams.get("token");
+    const fetchedToken =
+      queryParams.get("token") || localStorage.getItem("token");
     if (fetchedToken) {
       localStorage.setItem("token", fetchedToken);
+      navigate("/home");
     } else {
       navigate("/login");
     }

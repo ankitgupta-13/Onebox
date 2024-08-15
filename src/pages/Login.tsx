@@ -1,10 +1,18 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import google from "../assets/google.svg";
 import logo from "../assets/logoName.svg";
 
 const Login = () => {
+  const navigate = useNavigate();
   const handleLogin = async () => {
     window.location.href = `https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=${window.location.origin}`;
   };
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div className="h-screen">

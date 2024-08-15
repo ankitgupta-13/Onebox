@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { mailSlice } from "./mail.slice";
 import { themeSlice } from "./theme.slice";
 
 export const store = configureStore({
   reducer: {
     theme: themeSlice.reducer,
+    mail: mailSlice.reducer,
   },
 });
 

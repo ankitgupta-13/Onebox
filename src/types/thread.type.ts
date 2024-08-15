@@ -1,11 +1,14 @@
-export interface Mail {
-  createdAt: string;
+export interface Thread {
   id: number;
-  fromEmail: string;
   fromName: string;
+  fromEmail: string;
   inReplyTo: string;
   isRead: boolean;
+  messageId: string;
+  sentAt: string;
   subject: string;
   threadId: string;
   toEmail: string;
+  title: string;
+  body: string;
 }

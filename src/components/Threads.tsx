@@ -60,7 +60,7 @@ const Threads = () => {
           <Loader />
         ) : (
           <div className="flex flex-col items-center">
-            <div className="flex justify-between p-4 w-full">
+            <div className="flex justify-between p-4 w-full border-b-2 border-b-[var(--header-border-color)]">
               <div className="flex flex-col text-[var(--text-color)]">
                 <span className="font-bold">Orlando</span>
                 <span className="text-[var(--secondary-text-color)] text-sm">
@@ -75,9 +75,15 @@ const Threads = () => {
             <div className="w-11/12 flex flex-col gap-4">
               <div className="flex flex-col gap-2">
                 {!threadId ? (
-                  <div className="flex h-96 flex-col justify-center items-center">
+                  <div className="flex gap-3 h-96 flex-col justify-center items-center">
                     <img src={noMessage} alt="" />
-                    <span>Select an item to read</span>
+                    <div className="text-[var(--text-color)] font-bold">
+                      It’s the beginning of a legendary sales pipeline
+                    </div>
+                    <div className="flex flex-col items-center text-[var(--secondary-text-color)] text-sm w-1/3">
+                      <span>When you have inbound Emails</span>
+                      <span>you will see them here</span>
+                    </div>
                   </div>
                 ) : emailThreads.length === 0 ? (
                   <div>No Threads Found!</div>

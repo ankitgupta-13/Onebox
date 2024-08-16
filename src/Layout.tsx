@@ -1,12 +1,14 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import { setToken } from "./redux/auth.slice";
 import { RootState } from "./redux/store";
 
 const Layout = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const theme = useSelector((state: RootState) => state.theme.theme);
 
   useEffect(() => {
@@ -18,8 +20,9 @@ const Layout = () => {
     const fetchedToken =
       queryParams.get("token") || localStorage.getItem("token");
     if (fetchedToken) {
+      dispatch(setToken(fetchedToken));
       localStorage.setItem("token", fetchedToken);
-      navigate("/onebox");
+      navigate(`/onebox/${fetchedToken}`);
     } else {
       navigate("/login");
     }

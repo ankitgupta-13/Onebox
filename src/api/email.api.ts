@@ -15,6 +15,7 @@ export const getAllMails = async () => {
     if (response.status === 200) {
       return response.data;
     }
+    return [];
   } catch (error) {
     console.error(error);
   }

@@ -10,7 +10,7 @@ const Header = () => {
   const theme = useSelector((state: RootState) => state.theme.theme);
   const dispatch = useDispatch();
   const location = useLocation();
-  let activeSection = String(location.pathname.split("/").pop());
+  let activeSection = location.pathname.split("/")[1];
   activeSection =
     activeSection &&
     activeSection[0].toUpperCase() + activeSection.substring(1);

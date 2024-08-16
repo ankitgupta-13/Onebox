@@ -15,7 +15,7 @@ function App() {
       <>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Layout />}>
-          <Route path="/onebox" element={<Onebox />} />
+          <Route path="/onebox/:token" element={<Onebox />} />
         </Route>
       </>
     )
